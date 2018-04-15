@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Textbox.io Release Notes</title>
+    <style type="text/css">
+        body, tr {
+        font-family: Verdana, Helvetica, Arial, Tahoma, sans-serif;
+        font-size: 11px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+        font-family: Arial, sans-serif;
+        letter-spacing: -0.5px;
+        }
+
+        h1 {
+        font-size: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: rgb(100,100,100);
+        }
+
+        h2 {
+        border-top: 1px solid rgb(220,220,220);
+        color: rgb(50,50,50);
+        padding-top: 15px;
+        margin-top: 10px;
+        font-size: 14px;
+        }
+
+        h2 a{
+        color: rgb(50,50,50);
+        text-decoration: none;
+        }
+
+        h2 a:visited{
+        color: rgb(50,50,50);
+        }
+
+        h2 a:hover{
+        border-bottom: dotted 1px #121d52;
+        }
+
+        h2.faq {
+        border-top: 1px solid rgb(220,220,220);
+        color: rgb(50,50,50);
+        padding-top: 15px;
+        margin-top: 10px;
+        font-size: 14px;
+        }
+
+        h3 {
+        margin-top: 20px;
+        margin-bottom: 0px;
+        font-size: 14px;
+        font-weight: normal;
+        }
+        h4 {
+        margin-top: 15px;
+        margin-bottom: 0px;
+        font-size: 12px;
+        font-weight: normal;
+        }
+        h5 {
+
+        }
+        h6 {
+        margin-top: 15px;
+        margin-bottom: -10px;
+        padding: 0px;
+        font-size: 12px;
+        letter-spacing: 0px;
+        }
+        p, li, td {
+        line-height: 17px;
+        }
+        code {
+        background-color: #F3F3F3;
+        background-position: 100% 50%;
+        }
+    </style>
+</head>
+<body role="main">
+<h1>Ephox Textbox.io Release Notes</h1>
+
+<p>
+    This document contains information on changes between versions of Textbox.io.
+    For more detail and working examples, please consult the developer documentation.
+    Older changelog entries are available on the <a href="http://ephox.com/releases">Ephox releases site</a>.
+</p>
+
+<h2>Textbox.io 1.1.0.331</h2>
+
+<h3>Please Note</h3>
+<ul>
+    <li>Editor configuration now has a locale option. However using more than one unique value for locale in a page is
+        not supported.
+    </li>
+</ul>
+<h3>New Features</h3>
+<ul>
+    <li>Syntax highlighted Code View with autocompletion is now available (using CodeMirror). Click the icon in the
+        bottom right to switch.
+    </li>
+    <li>Inline Editing is now available to create a seamless WYSIWYG user experience, which automatically enables
+        floating toolbars
+    </li>
+    <li>Floating draggable toolbars are now available</li>
+    <li>iOS 8 support</li>
+    <li>The editor interface is now available in 33 languages. The browser locale is used by default, if a matching
+        translation is available. The locale can also be set via the editor API.
+    </li>
+    <li>Spell Checking is now available in 13 languages. The user interface language is used by default, if a matching
+        dictionary is available.
+    </li>
+    <li>Right to left interface support for Arabic and Hebrew locales.</li>
+    <li>Actions on custom buttons are now passed an editor reference</li>
+    <li>Removed image Drag and Drop overlay UI. Images are now inserted where the mouse points instead of where the
+        cursor was.
+    </li>
+    <li>Code View can be disabled in the editor configuration object.</li>
+    <li>new getSelectedText API</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+    <li>Image "src" attributes were not all updated before the uploadImages() callback was fired</li>
+    <li>Text did not wrap correctly on mobile browsers with long continuous lines in the content</li>
+    <li>Pressing enter at the end of a heading with inline styles did not convert the next line to a paragraph</li>
+    <li>Issues performing undo operations after auto-capitalization in a table</li>
+    <li>The "loaded" event fires not only once but every time the editor goes from full screen to normal</li>
+    <li>Converting a selection to list block items when there are new lines in between inserts unwanted bullets</li>
+    <li>The "loaded" event was incorrectly firing when the user switched to fullscreen or back, in addition to on load
+    </li>
+    <li>Changing the font size on a misspelled word would sometimes result in a partial underline</li>
+    <li>The cursor position was incorrect after using the insertHtmlAtCursor API</li>
+    <li>Input filters were not applied to content added with the insertHtmlAtCursor API</li>
+    <li>Text could not be selected within the help dialog</li>
+    <li>Pressing backspace with an image selected in Internet Explorer would sometimes navigate back</li>
+    <li>When an image upload timed out, the failed image was not converted to base64 on save</li>
+    <li>Pressing enter in the "web image url" dialog field submitted the outer web form containing TBIO</li>
+    <li>Spelling highlights were not filtered out when copying and pasting within the editor</li>
+    <li>Text Alignment and Font Weight styles could leak from the outer page into the editor UI</li>
+</ul>
+<h2>Textbox.io 1.0.0.1443</h2>
+
+<h3>Please Note</h3>
+<ul>
+    <li>Mobile support is limited to iOS 7. Android devices will be supported in a future release.</li>
+    <li>Image insertion operations may move the current cursor and/or selection location.</li>
+    <li>On iOS occasionally the virtual keyboard can become out of synchronization with the editor (i.e. it is displayed
+        or hidden when it shouldn't be). Returning focus to the editor by touching in the editable region usually
+        corrects this issue.
+    </li>
+    <li>Due to an Internet Explorer 10 rendering issue, new paragraphs may appear as two lines instead of a single line
+        on this browser.
+    </li>
+    <li>On Internet Explorer 11 spelling highlights can occasionally cause the current selection to change.</li>
+    <li>Some character combinations within a URL may cause the generated link to be invalid or incomplete.</li>
+    <li>Microsoft Word documents with large numbers of images may cause a "#1502" memory error in Adobe Flash indicating
+        that he image paste operation has failed due to memory constraints.
+    </li>
+    <li>Image upload is currently only supported for images smaller than 4.5MB.</li>
+</ul>
+<h3>New Features</h3>
+<ul>
+    <li>User-centric, streamlined, responsive UI based on HTML5 and CSS3</li>
+    <li>Rich text editing for mobile devices using iOS 7</li>
+    <li>Clean copy and paste from Microsoft Office, including image content</li>
+    <li>Automatic image uploads and supporting image upload service</li>
+    <li>Drag and drop to insert images</li>
+    <li>Fullscreen mode</li>
+    <li>Spell checking as you type with supporting spell check service</li>
+    <li>Autocorrect</li>
+    <li>Markdown support for distraction free writing</li>
+    <li>Inline HTML styling including bold, italic, underline and font selection</li>
+    <li>Work with HTML block styles including paragraphs, headings and blockquotes</li>
+    <li>Insert and edit hyperlinks</li>
+    <li>Ordered and unordered lists</li>
+    <li>Create and edit tables</li>
+    <li>Simple integration API with intelligent defaults</li>
+    <li>Customization API to control available commands</li>
+    <li>Create custom functionality and extensions using the custom button API</li>
+</ul>
+</body>
+</html>

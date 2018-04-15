@@ -1,0 +1,27 @@
+.ta-toolbar {
+    background-color: #f4f4f4;
+    padding: 10px 10px 5px;
+    margin-left: 0px; /* Override bootstrap */
+    border: 1px solid #f4f4f4;
+    cursor: default;
+}
+
+.ta-toolbar .btn-group {
+    margin-bottom: 5px;
+}
+
+.ta-editor, .white-box {
+    padding: 10px;
+    background-color: #FFF;
+    border: 1px solid #EEE;
+    min-height: 100px;
+    cursor: text;
+}
+
+textarea.ta-bind {
+    width: 100%;
+}
+
+.ta-scroll-window > .ta-bind {
+    min-height: 100px;
+}

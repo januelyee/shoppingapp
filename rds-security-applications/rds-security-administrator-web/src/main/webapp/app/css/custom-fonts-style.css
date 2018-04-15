@@ -1,0 +1,52 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('custom-fonts/icomoon.eot?-xa6dso');
+	src:url('custom-fonts/icomoon.eot?#iefix-xa6dso') format('embedded-opentype'),
+		url('custom-fonts/icomoon.woff?-xa6dso') format('woff'),
+		url('custom-fonts/icomoon.ttf?-xa6dso') format('truetype'),
+		url('custom-fonts/icomoon.svg?-xa6dso#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-near-miss:before {
+	content: "\66";
+}
+.icon-accident:before {
+	content: "\67";
+}
+.icon-high-risk-task:before {
+	content: "\68";
+}
+.icon-inspection:before {
+	content: "\69";
+}
+.icon-underground:before {
+	content: "\61";
+}
+.icon-aboveground:before {
+	content: "\62";
+}
+.icon-asbestos:before {
+	content: "\63";
+}
+.icon-mould:before {
+	content: "\64";
+}
+.icon-pcbs:before {
+	content: "\65";
+}

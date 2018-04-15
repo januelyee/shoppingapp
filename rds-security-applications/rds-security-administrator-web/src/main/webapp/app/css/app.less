@@ -1,0 +1,1019 @@
+/* app less css stylesheet */
+@import (reference) "../../bootstrap-less-files/bootstrap";
+
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+@risk-red: #D35E4F;
+@risk-yellow: #F2C051;
+@risk-orange: #E88949;
+@risk-turquoise: #4AC6B4;
+@risk-blue: #2D85C1;
+@risk-green: #86A851;
+@risk-purple: #62508C;
+@risk-grey: #B3B3B3;
+@risk-gold: #A47E3C;
+
+@red: #FF0000;
+@danger: #b94a48;
+
+.sub-header {
+  background: #f4f4f4 none no-repeat;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  //position: fixed;
+  // margin: 10px;
+  margin-top: 13px;
+  margin-bottom: 5px;
+  padding: 5px;
+  min-height: 43px;
+}
+
+.below-header {
+  margin-top: 20px
+}
+
+.footer {
+  background-color: #ffffff;
+  position: fixed;
+  bottom: 0px;
+}
+
+.footer .footer-section {
+  border-top: #F2F2F2 1px solid;
+  padding: 10px;
+}
+
+.list-inline .divider-vertical {
+  height: 40px;
+  margin: 0 10px;
+  border-right: 1px solid #ffffff;
+  //border-left: 1px solid #f2f2f2;
+}
+
+#navSearch {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: -1em;
+}
+
+.slide-drawer {
+  color: #000000;
+  margin-top: 55px;
+  padding-top: 10px;
+  //padding-left: 20px;
+  background: #E6E6E6 none no-repeat;
+  position: fixed;
+}
+
+.slide-drawer .navbar-inner {
+}
+
+.slide-drawer .navbar-inner .nav > li {
+  //margin-right: 25px;
+}
+
+.slide-drawer .navbar {
+  font-weight: bold;
+}
+
+.slide-drawer .divider-vertical {
+  border-color: #E6E6E6;
+}
+
+.slide-drawer .end-divider-vertical {
+  border-color: @risk-grey;
+  height: 90px;
+  bottom: 20px;
+  position: relative;
+  border-right: 1px solid @risk-grey;
+  border-left: 1px solid @risk-grey;
+}
+
+.slide-drawer [class^="icon-"], [class*=" icon-"] {
+  height: auto !important;
+  display: inline;
+}
+
+.slide-drawer .side-nav {
+  margin-top: 2%;
+}
+
+a,
+a:hover,
+a:link,
+a:active {
+  text-decoration: none;
+  background-color: transparent;
+  color: #000000;
+}
+
+.well {
+  box-sizing: border-box;
+}
+
+.well-white {
+  background-color: #FFFFFF;
+  background-image: none;
+}
+
+.well-20-left {
+  padding-left: 20px;
+}
+
+.well-30-left {
+  padding-left: 30px;
+}
+
+.well-100-left {
+  padding-left: 100px;
+}
+
+.risk-icon(@color; @font-size:14px; @margin:5px) {
+  color: @color;
+  margin-right: @margin;
+  font-size: @font-size;
+}
+
+.i-sm {
+  .risk-icon(black);
+}
+
+.i-med(@color:black) {
+  .risk-icon(@color, 20px);
+  display: inline;
+}
+
+.i-large(@color:black) {
+  .risk-icon(@color, 30px);
+  display: inline;
+}
+
+.i-xlarge(@color:black) {
+  .risk-icon(@color, 60px);
+  display: inline;
+}
+
+.i-grey {
+  .risk-icon(@risk-grey);
+}
+
+.i-grey-sm {
+  .risk-icon(@risk-grey, 20px, 10px)
+}
+
+.i-grey-med {
+  .i-med(@risk-grey)
+}
+
+.i-grey-large {
+  .i-large(@risk-grey);
+}
+
+.i-grey-xlarge {
+  .i-xlarge(@risk-grey);
+}
+
+.i-red {
+  .risk-icon(@risk-red);
+}
+
+.i-red-med {
+  .i-med(@risk-red);
+}
+
+.i-red-large {
+  .i-large(@risk-red);
+}
+
+.i-red-xlarge {
+  .i-xlarge(@risk-red);
+}
+
+.i-yellow {
+  .risk-icon(@risk-yellow);
+}
+
+.i-yellow-med {
+  .i-med(@risk-yellow);
+}
+
+.i-yellow-large {
+  .i-large(@risk-yellow);
+}
+
+.i-yellow-xlarge {
+  .i-xlarge(@risk-yellow);
+}
+
+.i-green {
+  .risk-icon(@risk-green);
+}
+
+.i-green-med {
+  .i-med(@risk-green);
+}
+
+.i-green-large{
+  .i-large(@risk-green);
+}
+
+.i-green-xlarge {
+  .i-xlarge(@risk-green);
+}
+
+.i-blue {
+  .risk-icon(@risk-blue);
+}
+
+.i-blue-large {
+  .i-large(@risk-blue);
+}
+
+.i-blue-xlarge {
+  .i-xlarge(@risk-blue);
+}
+
+.i-purple {
+  .risk-icon(@risk-purple);
+}
+
+.i-purple-large {
+  .i-large(@risk-purple);
+}
+
+.i-purple-xlarge {
+  .i-xlarge(@risk-purple);
+}
+
+.i-turquoise {
+  .risk-icon(@risk-turquoise)
+}
+
+.i-turquoise-med {
+  .i-med(@risk-turquoise);
+}
+
+.i-turquoise-large {
+  .i-large(@risk-turquoise)
+}
+
+.i-turquoise-xlarge {
+  .i-xlarge(@risk-turquoise)
+}
+
+.i-orange {
+  .risk-icon(@risk-orange);
+}
+
+.i-orange-med {
+  .i-med(@risk-orange);
+}
+
+.i-orange-large {
+  .i-large(@risk-orange);
+}
+
+.i-orange-xlarge {
+  .i-xlarge(@risk-orange);
+}
+
+.i-block(@color; @font-size:14px; @padding:3px; @icon-color:white) {
+  .risk-icon(@icon-color, @font-size, 5px);
+  background-color: @color;
+  /*border-radius: 3px;*/
+  padding: @padding;
+  display: inline;
+
+}
+
+.i-block-med(@color; @font-size:14px; @padding: 0px; @icon-color:white) {
+  .i-block(@color, @font-size, 0px, @icon-color);
+  padding-left: @padding;
+  width: 30px;
+  max-height: 30px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.i-block-large(@color; @font-size:30px; @padding: 0px; @icon-color:white) {
+  .i-block(@color, @font-size, 0px, @icon-color);
+  padding-left: @padding;
+  width: 40px;
+  height: 35px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.i-grey-block {
+  .i-block(@risk-grey);
+}
+
+.i-grey-block-med {
+  .i-block-med(@risk-grey, 20px, 5px);
+}
+
+.i-gold {
+  .risk-icon(@risk-gold);
+}
+
+.i-gold-block-med {
+  .i-block-med(@risk-gold, 20px, 5px);
+}
+
+.i-gold-xsm {
+  .i-block(@risk-gold, 13px);
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.i-red-block {
+  .i-block(@risk-red);
+}
+
+.i-red-xsm {
+  .i-block(@risk-red, 13px);
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.i-red-block-med {
+  .i-block-med(@risk-red, 20px, 5px);
+}
+
+.i-orange-block {
+  .i-block(@risk-orange);
+}
+
+.i-orange-block-med {
+  .i-block-med(@risk-orange, 20px, 5px);
+}
+
+.i-orange-block-large {
+  .i-block-large(@risk-orange, 30px, 5px);
+}
+
+.i-turquoise-block {
+  .i-block(@risk-turquoise);
+}
+
+.i-turquoise-block-med {
+  .i-block-med(@risk-turquoise, 20px, 5px);
+}
+
+.i-turquoise-block-large {
+  .i-block-large(@risk-turquoise, 30px, 5px);
+}
+
+.i-blue-block {
+  .i-block(@risk-blue);
+}
+
+.i-blue-block-med {
+  .i-block-med(@risk-blue, 20px, 5px);
+}
+
+.i-green-block {
+  .i-block(@risk-green);
+}
+
+.i-green-block-med {
+  .i-block-med(@risk-green, 20px, 5px);
+}
+
+.i-yellow-block {
+  .i-block(@risk-yellow);
+}
+
+.i-yellow-block-med {
+  .i-block-med(@risk-yellow, 20px, 5px);
+}
+
+.i-purple-block {
+  .i-block(@risk-purple);
+}
+
+.i-purple-block-med {
+  .i-block-med(@risk-purple, 20px, 5px);
+}
+
+.i-purple-block-large {
+  .i-block-large(@risk-purple, 30px, 5px);
+}
+
+.questionnaire-no-answer {
+  .i-block(transparent, 20px, 5px, @risk-grey);
+  display: inline-block;
+}
+
+.questionnaire-yes(@block-color; @checkmark-color){
+  .i-block(@block-color, 20px, 5px, @checkmark-color);
+  display: inline-block;
+}
+
+.questionnaire-na-no-answer {
+  .i-block(transparent, 15px, 0px, @risk-grey);
+  display: inline-block;
+  padding-top: 3px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.questionnaire-no {
+  .i-block(#999999, 20px, 5px, #4C4C4C);
+  display: inline-block;
+}
+
+.questionnaire-na {
+  .i-block(#999999, 15px, 0px, #4C4C4C);
+  display: inline-block;
+  padding-right: 3px;
+  padding-left: 3px;
+  padding-top: 3px;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.sustainability-list-no-answer {
+  color: @risk-grey;
+}
+
+.sustainability-list-yes {
+  color: @risk-yellow;
+}
+
+.sustainability-no-answer {
+  .questionnaire-no-answer();
+}
+
+.sustainability-na-no-answer {
+  .questionnaire-na-no-answer();
+}
+
+.sustainability-yes {
+  .questionnaire-yes(@risk-yellow, #F9E0A8);
+}
+
+.sustainability-no {
+  .questionnaire-no();
+}
+
+.sustainability-na {
+  .questionnaire-na();
+}
+
+.environmental-list-no-answer {
+  color: @risk-grey;
+}
+
+.environmental-list-yes {
+  color: @risk-green;
+}
+
+.environmental-no {
+  color: #999999;
+}
+
+.environmental-no-answer {
+  .questionnaire-no-answer();
+}
+
+.environmental-na-no-answer {
+  .questionnaire-na-no-answer();
+}
+
+.environmental-yes {
+  .questionnaire-yes(@risk-green, #dcf9c2);
+}
+
+.environmental-no {
+  .questionnaire-no();
+}
+
+.environmental-na {
+  .questionnaire-na();
+}
+
+.ohs-list-no-answer {
+  color: @risk-grey;
+}
+
+.ohs-list-yes {
+  color: @risk-orange;
+}
+
+.ohs-no {
+  color: #999999;
+}
+
+.ohs-no-answer {
+  .questionnaire-no-answer();
+}
+
+.ohs-na-no-answer {
+  .questionnaire-na-no-answer();
+}
+
+.ohs-yes {
+  .questionnaire-yes(@risk-orange, #ffcd6a);
+}
+
+.ohs-no {
+  .questionnaire-no();
+}
+
+.ohs-na {
+  .questionnaire-na();
+}
+
+.progress-text-center {
+  line-height: 2em;
+}
+
+.breadcrumb > li > .divider {
+  color: #000;
+}
+
+.required-field {
+  color: @red;
+}
+
+.pb (@color) {
+  /* Color, background image */
+  background: @color none;
+}
+
+.pb-red {
+  .pb(@risk-red);
+}
+
+.pb-green {
+  .pb(@risk-green);
+}
+
+.pb-turquoise {
+  .pb(@risk-turquoise);
+}
+
+.pb-orange {
+  .pb(@risk-orange);
+}
+
+.pb-purple {
+  .pb(@risk-purple);
+}
+
+.pb-yellow {
+  .pb(@risk-yellow);
+}
+
+.pb-blue {
+  .pb(@risk-blue);
+}
+
+.centered-horizontal {
+  display: block;
+  margin: 0 auto;
+}
+
+.select-small-skinny {
+  height: 25px !important;
+  width: 90px !important;
+}
+
+.input-small-skinny[type="text"] {
+  height: 10px !important;
+  width: 60px !important;
+}
+
+.progress {
+  height: 10px;
+  background-image: -o-linear-gradient(top,@risk-grey,@risk-grey);
+  background-image: -moz-linear-gradient(top, @risk-grey, @risk-grey);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(@risk-grey), to(@risk-grey));
+  background-image: -webkit-linear-gradient(top, @risk-grey, @risk-grey);
+  background-image: linear-gradient(to bottom, @risk-grey, @risk-grey);
+}
+
+.questionnaire-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.css-form input.ng-invalid.ng-dirty {
+  border-color: @danger;
+}
+
+.hr-divider {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.dashboard-panel {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+[data-style=primary] + .popover {
+  background-color: #f2f2f2;
+  width: 700px;
+}
+
+[data-style=primary] + .popover .popover-title {
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #cccccc;
+}
+
+.circle (@borderColor:#000000) {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 1px solid @borderColor;
+}
+
+.circle-list {
+  .circle(#00000000);
+  margin-right: 10px;
+}
+
+.circle-list-outline {
+  .circle(#000000);
+  margin-right: 10px;
+}
+
+.circle-list-filled {
+  .circle-list();
+  background-color: #000000;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.left-inner-addon {
+  position: relative;
+}
+.left-inner-addon input {
+  padding-left: 30px;
+}
+.left-inner-addon i {
+  position: absolute;
+  padding: 10px 12px;
+}
+
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+}
+
+.i-align{
+  vertical-align: sub;
+}
+
+.pointer-underline:hover{
+  .pointer();
+  text-decoration: underline;
+}
+
+.standalone-report-modal-window .modal-dialog {
+  width: 70%;
+}
+
+.standalone-report-modal-window-small .modal-dialog {
+  max-width: 384px;
+}
+
+.preview-record-modal-window .modal-dialog {
+  width: 60%;
+}
+
+.row-centered {
+  text-align: center;
+}
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px;
+}
+
+button:disabled{
+  color: black;
+  font-weight: 800;
+}
+
+/* Classes to have columns of same height */
+/* http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-responsive-columns-of-same-height */
+/* vertical alignment styles */
+.col-top {
+  vertical-align:top;
+}
+.col-middle {
+  vertical-align:middle;
+}
+.col-bottom {
+  vertical-align:bottom;
+}
+
+/* columns of same height styles */
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* END  Classes to have columns of same height */
+
+.underline {
+  text-decoration: underline;
+}
+
+.i-button-disabled {
+  .questionnaire-yes(#d3d3d3, @risk-grey);
+}
+
+.i-button-yellow {
+  .questionnaire-yes(@risk-yellow, white);
+}
+
+.i-button-green {
+  .questionnaire-yes(@risk-green, white);
+}
+
+.i-button-orange {
+  .questionnaire-yes(@risk-orange, white);
+}
+
+.i-button-red {
+  .questionnaire-yes(@risk-red, white);
+}
+
+.i-button-purple {
+  .questionnaire-yes(@risk-purple, white);
+}
+
+.i-button-turquoise {
+  .questionnaire-yes(@risk-turquoise, white);
+}
+
+.i-button-blue {
+  .questionnaire-yes(@risk-blue, white);
+}
+
+.i-button-black {
+  .questionnaire-yes(black, white);
+}
+
+.drag-accept{
+  background-color: #86a851;
+}
+
+.sortable-accept{
+  background-color: #86a851;
+  height: 3em;
+  line-height: 3em;
+}
+
+.responsive-iframe-wrapper {
+  width:80%;
+  height:100%;margin:0
+  auto;background:#CCC
+}
+
+.responsive-iframe {
+  position:relative;
+}
+
+.responsive-iframe .ratio {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.responsive-iframe iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pre {
+  white-space: pre-wrap;
+}
+
+.property-inactive {
+  color: red;
+  font-weight: bold;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+@media screen {
+  #printSection {
+    display: none;
+  }
+}
+
+@media print {
+  #mainBody * {
+    display: none;
+  }
+  #printSection, #printSection * {
+    visibility:visible;
+  }
+  #printSection {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
+
+.inline {
+  display: inline;
+}
+
+.button-yellow {
+  color: white;
+  background-color: @risk-yellow;
+}
+
+.button-green {
+  color: white;
+  background-color: @risk-green;
+}
+
+.button-orange {
+  color: white;
+  background-color: @risk-orange;
+}
+
+.button-red {
+  color: white;
+  background-color: @risk-red;
+}
+
+.button-purple {
+  color: white;
+  background-color: @risk-purple;
+}
+
+.button-blue {
+  color: white;
+  background-color: @risk-blue;
+}
+
+.button-turquoise {
+  color: white;
+  background-color: @risk-turquoise;
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.pointer-highlight:hover {
+  .pointer();
+  background-color: #f5f5f5;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// General idea is to use a 10% darker shade for the boarders, website to help with that: http://www.hexcolortool.com
+
+.risk-btn-default {
+  .button-variant(white, #f0a050, #d89048)
+}
+
+.risk-btn-save {
+  .button-variant(white, #7fa8b9, #658694)
+}
+
+.risk-btn-add {
+  .button-variant(white, #07c97c, #05a063);
+}
+
+.risk-btn-update {
+  .risk-btn-save();
+}
+
+.risk-btn-delete {
+  .button-variant(white, #f05050, #c04040);
+}
+
+.risk-btn-cancel {
+  .risk-btn-default();
+}
+
+.risk-btn-close {
+  .risk-btn-default();
+}
+
+.risk-btn-back {
+  .risk-btn-default();
+}
+
+.risk-btn-ok {
+  .risk-btn-default();
+}
+
+.risk-btn-sustainability {
+  .button-variant(white, @risk-yellow, #D9A738)
+}
+
+.risk-btn-environmental {
+  .button-variant(white, @risk-green, #6D8F38)
+}
+
+.risk-btn-ohs {
+  .button-variant(white, @risk-orange, #CF7030)
+}
+
+.risk-btn-insurance {
+  .button-variant(white, @risk-red, #BA4536)
+}
+
+h1 .risk-likert-header {
+  padding-left: 4.25%;
+  margin: 20px 0 0;
+}
+
+form .risk-likert-statement {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 30px 0 0 4.25%;
+  margin-bottom: 10px;
+}
+
+form .risk-likert {
+  list-style:none;
+  width:100%;
+  margin:0;
+  padding:0 0 35px;
+  display:block;
+  border-bottom: 2px solid black;
+}
+
+form .risk-likert:last-of-type {
+  border-bottom:0;
+}
+
+form .risk-likert:before {
+  content: '';
+  position:relative;
+  top:11px;
+  left:3%;
+  display:block;
+  background-color: black;
+  height:4px;
+  width:84%;
+}
+
+form .risk-likert li {
+  display:inline-block;
+  text-align:center;
+  vertical-align: top;
+}
+
+form .risk-likert li input[type=radio] {
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+
+}
+
+form .risk-likert li label {
+  width:100%;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.grey-background {
+  background-color: #f5f5f5;
+}
+
+.modal-body * {
+  word-wrap: break-word
+}

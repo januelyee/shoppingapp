@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp" id="ng-app">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <title>Refined Data Property Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <link href="css/icomoon-style.css" rel="stylesheet">
+    <link href="css/custom-fonts-style.css" rel="stylesheet">
+    <link href='css/google-font/font.css' type='text/css' rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="css/angularTreeview/css/angular.treeview.css">
+    <link rel="stylesheet" href="css/bootstrap-multiselect/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="css/bootstrap-multiselect/prettify.css"/>
+
+    <link rel="stylesheet" href="css/owl-carousel/owl.carousel.css"/>
+    <link rel="stylesheet" href="css/owl-carousel/owl.theme.css"/>
+    <link rel="stylesheet" href="css/owl-carousel/owl.transitions.css"/>
+    <link rel="stylesheet" href="lib/slick-carousel/slick/slick.min.css"/>
+
+    <link rel="stylesheet" href="css/silviomoreto-bootstrap-select/bootstrap-select.css"/>
+
+    <link rel="stylesheet" href="css/angular-autocomplete/autocomplete.min.css">
+
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/textAngular/textAngular.min.css">
+    <link rel="stylesheet" href="css/darthwade-angular-loading/angular-loading.min.css">
+
+    <link rel="shortcut icon" href="/riskapp/app/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/riskapp/app/favicon.ico" type="image/x-icon">
+
+    <!-- AngularJS Toast Lib -->
+    <link rel="stylesheet" href="css/angularjs-toast/toaster.min.css">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 8]>
+    <script src="js/json2.js"></script>
+    <![endif]-->
+
+</head>
+
+<body ng-controller="GlobalCtrl">
+<div id="mainBody">
+    <!--
+    This is the default toaster which showToast() function will target if you do not supply an id to the function.
+    You can add your own to override this config and target that one by providing an ID to the function
+    -->
+    <toaster-container toaster-options="{'position-class': 'toast-top-center', 'limit':3, 'toaster-id':'globalToast'}"></toaster-container>
+
+    <div dw-loading="wholeScreenLoading" dw-loading-options="wholeScreenLoadingOptions">
+        <div class="" ng-controller="SlideNavCtrl">
+            <!--Header Navigation-->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#nav-bar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#/" class="navbar-brand pointer" style="padding: 10px">
+                        <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAeCAYAAADZ7LXbAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYZEgEadjZWygAAArlJREFUSMftVj9oE1Ec/i6mokPNgWBGgziGJCAOoZC0i4VE8HKLOkhSgw4OelII2KWBQtIGA1ddClLM4VDqkF7B1qGU3kVsqItp7SBo4eJSOygXglUqEpd34fG85o8SF33L3b37vfe97/f7vt8d12g00OvhwF8Y/zBIdl4c7ClIdl4MAFjrNZO0HRtfpsT7MqX0H4Nk50UPgEvsvC9T8gCodM2krouCzbRgA8ADUAGcBmB2y0Sq66JW10W+FQgADYCf3Fe6BakACAOggQLUe8OXKckUALbGQlq3IBZ1PwCZ3LvItTq3I3kA3KHiF39HXTT1eF0XEwB0SmEFJl5tBeLsAAQA5KMcZg4awNyOBFJoa9TagTgAIBnLDyZj+ab2+8NFA8AmFee66cZHUnxWAPLWWMjsNF1ryVheS8byVoHZlCTuXS6ajFeqVM1ag8wujGpkQRjA62Qsb+W9RsX6rzx4epH1ztZYyNzLRYS9XKTQCRO6LYxL8oD8qXZsig4ePvX2LPU4suKcFPZyEQPAAgBPW5DZhdECYdNU1cTjc8MAFGZN9aqjfGPFOZkGME6JoOPeJTHPYUkeAIBpADjPf3j/8Ihy7bpDv88oTHenlg81I8d+45OxvGrTCIdk6aWxv/HNBGBQxrQkHHCnlo1ufJIgPqFPWugPFz37GxHZBmDQnVo2tuMCT7Weph28iprm7P5WiIw1ZsOhTHCV7lfK53d9r34ccBfIpi6bA494FbXARdaf8Uw3rQLQ+na/rp98Ur1FzU9ngqsmAMM0+s58/8LdPmTjJkOvolaaNYmWl3jiC7YWm67nu8Xjb2oiAPPuiRcCaSHhFt5bBJDwKqppW/hoeSlBHPxL3peC0cp2XNBaAOgA0l5F1dqqi7CyelSACECZmnkkkwN4yFyVKE0DoFqp6UjC//8gW42fKuD3vyFIIawAAAAASUVORK5CYII='/>
+                        <small>&nbsp;Home</small>
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="nav-bar-collapse">
+                    <ul class="nav navbar-nav hidden-sm hidden-xs">
+                        <li>&nbsp;</li>
+                        <li ng-cloak>
+                            <a href="" ng-click="toggle()">
+                                <i class="{{ icon }}  i-grey-sm" style="display: inline"></i>{{ navText }}
+                            </a>
+                        </li>
+                    </ul>
+                    <ul id="smallNav" class="nav navbar-nav visible-sm visible-xs">
+                        <li class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">Jump to... <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/search"><i class="icon-search i-grey"></i>Search</a></li>
+                                <li ng-click="goToModule('sustainability', 'smallNav')"><a href=""><i class="icon-earth i-yellow"></i>Sustainability
+                                    / GHG</a></li>
+                                <li ng-click="goToModule('environmental', 'smallNav')"><a href=""><i class="icon-leaf i-green"></i>Environmental</a>
+                                </li>
+                                <li ng-click="goToModule('ohs', 'smallNav')"><a href=""><i class="icon-aid i-orange"></i>Occupational Health and Safety</a>
+                                </li>
+                                <li ng-click="goToModule('insurance', 'smallNav')"><a href=""><i class="icon-office i-grey"></i>Insurance Risk Mangement</a></li>
+                                <!--<li ng-click="goToModule('capitalplanning', 'smallNav')"><a href=""><i class="icon-briefcase i-grey"></i>Capital Planning</a></li>-->
+                                <li ng-click="goToModule('compliance', 'smallNav')"><a href=""><i class="icon-library i-grey"></i>Compliance</a></li>
+                                <li><a href="#/reports"><i class="icon-pie" style="color: #a47e3c"></i>Reports</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li ng-show="isAdmin" ng-click="navbarLink('admin')"><a href="#/admin"><i class="icon-cog-2 i-grey-sm"></i>Administration</a></li>
+                        <li><a href="#/tasks" ng-click="navbarLink('tasks')"><i class="icon-checkmark-circle i-grey-sm"></i>Tasks</a></li>
+                        <li><a href="#/profile"><i class="icon-user-3 i-grey-sm"></i>Profile</a></li>
+                        <li ng-show="helpEnabled"><a href="#/help"><i class="icon-support i-grey-sm"></i>Help</a></li>
+                        <li ng-click="logout()"><a href=""><i class="icon-exit i-grey-sm"></i>Logout</a></li>
+                    </ul>
+                    <form id="navSearch" class="navbar-form navbar-right hidden-sm hidden-xs" role="search" ng-submit="searchForProperty()">
+                        <div class="right-inner-addon">
+                            <i id="navSearchSpinner" style="margin-top: 7px; z-index: 9999999" class="pointer" ng-click="searchForProperty()"></i>
+                            <i class="icon-search" ng-hide="searching"></i>
+                            <input type="text" class="form-control" ng-model="searchBar" placeholder="Search">
+                        </div>
+                    </form>
+                    <a class="navbar-text navbar-right hidden-sm hidden-xs" href="#/search">Property Finder&nbsp;</a>
+                </div>
+
+            </nav>
+            <!--End Header Navigation-->
+
+            <!-- Slide out Navigation -->
+
+            <div class="container slide-drawer collapse out col-md-offset-1" id="navCollapse" style="z-index: 10000" ng-mouseleave="toggleSlideLocation()"
+                 ng-mouseenter="toggleSlideLocation()">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-inline text-center">
+                            <li class="pointer" ng-click="!sustainabilityEnabled || goToModule('sustainability', 'sustainability', true)"><i id="sustainability"
+                                                                                                                                             class="icon-earth {{ sustainabilityIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(sustainabilityEnabled)">Sustainability</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="!environmentalEnabled || goToModule('environmental', 'environmental', true)" class="pointer"><i id="environmental"
+                                                                                                                                          class="icon-leaf {{ environmentalIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(environmentalEnabled)">Environmental</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="!ohsEnabled || goToModule('ohs', 'ohs', true)" class="pointer"><i id="ohs" class="icon-aid {{ ohsIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(ohsEnabled)">Health and Safety</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="!insuranceEnabled || goToModule('insurance', 'insurance', true)" class="pointer"><i id="insurance"
+                                                                                                                              class="icon-office {{ insuranceIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(insuranceEnabled)">Insurance</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="!propertyReportsEnabled || goToModule('propertyReports', 'propertyReports', true)" class="pointer"><i id="propertyReports"
+                                                                                                                                                class="icon-book {{ propertyReportsIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(propertyReportsEnabled)">Property Reports</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="!complianceEnabled || goToModule('compliance', 'compliance', true)" class="pointer"><i id="compliance"
+                                                                                                                                 class="icon-library {{ complianceIconColor }}-xlarge"></i>
+
+                                <div ng-class="isModuleEnabled(complianceEnabled)">Compliance</div>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li ng-click="toggle()"><a href="#/reports"><i class="icon-pie i-grey-xlarge" style="color: #a47e3c"></i></a>
+
+                                <div>Reports</div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- End slide out Navigation -->
+
+        <div class="container" style="padding-top: 42px">
+            <!--content-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div ng-view></div>
+                </div>
+            </div>
+            <!--content end-->
+
+            <!--Footer-->
+            <!--<hr>
+            <div class="row">
+                <div class="col-md-12">
+                    Copyright &copy; 2013 Refined Data Solutions Inc. <a href="#">Terms of use</a>
+                </div>
+            </div>-->
+            <!--End Footer-->
+        </div>
+    </div>
+    
+    <!-- Load scripts at the end, results in faster loading -->
+    <script src="lib/spin.js"></script>
+
+    <!-- jquery -->
+    <script src="lib/jquery/1.10.2/jquery.min.js"></script>
+    <script src="lib/jquery/1.10.2/jquery-ui.min.js"></script>
+
+    <!-- AngularJS -->
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-animate.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-loader.min.js"></script>
+    <script type="text/javascript" src="lib/angular/angular-sanitize.min.js"></script>
+
+    <!-- Upload library -->
+    <script type="text/javascript">
+        // Need to be loaded before angular-file-upload-shim(.min).js
+        FileAPI = {
+//            debug: true,
+            jsPath: 'lib/angular-file-upload/',
+            staticPath: 'lib/angular-file-upload/'
+        }
+    </script>
+    <script src="lib/angular-file-upload/angular-file-upload-shim.min.js"></script>
+    <script src="lib/angular-file-upload/angular-file-upload.min.js"></script>
+
+
+    <!-- Bootstrap -->
+    <script src="lib/bootstrap.min.js"></script>
+
+    <!-- AngularStrap -->
+    <script src="lib/angular-strap/angular-strap.min.js"></script>
+    <script src="lib/angular-strap/angular-strap.tpl.min.js"></script>
+
+    <!-- angular-dragdrop  http://codef0rmer.github.io/angular-dragdrop -->
+    <script src="lib/angular-dragdrop/angular-dragdrop.js"></script>
+    <script src="lib/angular-ui-sortable/sortable.js"></script>
+
+    <!-- Owl Carousel -->
+    <script src="lib/owl-carousel/owl.carousel.min.js"></script>
+
+    <!-- Slick -->
+    <script src="lib/slick-carousel/slick/slick.js"></script>
+
+    <!-- AnulgarJS Slick -->
+    <script src="lib/angular-slick/slick.js"></script>
+
+    <!-- SilvioMoreto Bootstrap-select -->
+    <script src="lib/silviomoreto-bootstrap-select/bootstrap-select.min.js"></script>
+
+    <!-- textAngular -->
+    <script src="lib/textAngular/textAngular-rangy.min.js"></script>
+    <script src="lib/textAngular/textAngular.min.js"></script>
+
+    <!-- Angular Loading -->
+    <script src="lib/darthwade-angular-loading/angular-loading.js"></script>
+
+    <!-- AngularJS Toast Lib -->
+    <script src="lib/angularjs-toast/toaster.min.js"></script>
+
+    <!-- Angular UI Bootstrap -->
+    <script src="lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.3.2.min.js"></script>
+
+    <script src="js/constants.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/controllers/environmentalControllers.js"></script>
+    <script src="js/controllers/dashboardControllers.js"></script>
+    <script src="js/controllers/occupationalHealthAndSafety.js"></script>
+    <script src="js/controllers/insuranceControllers.js"></script>
+    <script src="js/controllers/administrationControllers.js"></script>
+    <script src="js/controllers/questionnaireAdminControllers.js"></script>
+    <script src="js/controllers/complianceControllers.js"></script>
+    <script src="js/controllers/sustainabilityControllers.js"></script>
+    <script src="js/controllers/propertyDetailsController.js"></script>
+    <script src="js/controllers/propertyReportsControllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/directives/complianceDirectives.js"></script>
+    <script src="lib/bootstrap-multiselect.js"></script>
+    <script src="lib/knockout-2.3.0.js"></script>
+    <script src="lib/prettify.js"></script>
+    <script src="lib/rainbowvis.min.js"></script>
+    <script src="lib/bigdecimal/BigDecimal-all-last.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="lib/checklist-model.min.js"></script>
+    <script src="lib/angular-filters/angular-filter.min.js"></script>
+    <script src="lib/angular-autocomplete/autocomplete.min.js"></script>
+    <script src="lib/readmore/readmore.min.js"></script>
+
+    <!-- google api required for charts -->
+    <script type="text/javascript" src='https://www.gstatic.com/charts/loader.js'></script>
+
+    <!-- custom styles and dawing for this questionnaire year landing page -->
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="popover"]').popover({trigger: 'click', 'placement': 'bottom'});
+        });
+
+        // Force load of API v41, know IE issue in v42
+        // https://github.com/google/google-visualization-issues/issues/2039
+        google.charts.load('41', {packages: ['corechart', 'bar']});
+    </script>
+</div>
+</body>
+</html>
