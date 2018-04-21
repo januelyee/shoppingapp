@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>rds-enterprise-java</groupId>
-    <artifactId>rds-security</artifactId>
+    <groupId>shopping-cart-enterprise-java</groupId>
+    <artifactId>shopping-cart</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Refined Data Security Library</name>
-    <description>Refined Data Security Library Parent POM</description>
+    <name>Shopping Cart</name>
+    <description>Shopping Cart Parent POM</description>
 
     <dependencies>
         <dependency>
@@ -45,13 +45,13 @@
     </dependencies>
 
     <modules>
-        <module>rds-security-domain</module>
-        <module>rds-security-dao-specs</module>
-        <module>rds-security-daos-ejb</module>
+        <module>shopping-cart-domain</module>
+        <module>shopping-cart-dao-specs</module>
+        <module>shopping-cart-daos-ejb</module>
 
-        <module>rds-security-services-ejb</module>
-        <module>rds-security-service-specs</module>
-        <module>rds-security-rest-resources</module>
+        <module>shopping-cart-services-ejb</module>
+        <module>shopping-cart-service-specs</module>
+        <module>shopping-cart-rest-resources</module>
         <module>rds-security-applications</module>
     </modules>
 
@@ -59,29 +59,5 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.zeroturnaround</groupId>
-                <artifactId>jrebel-maven-plugin</artifactId>
-                <version>1.1.5</version>
-                <configuration>
-                    <addResourcesDirToRebelXml>true</addResourcesDirToRebelXml>
-                    <alwaysGenerate>true</alwaysGenerate>
-                    <showGenerated>true</showGenerated>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-rebel-xml</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
