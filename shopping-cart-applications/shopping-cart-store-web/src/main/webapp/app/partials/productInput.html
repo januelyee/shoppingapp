@@ -1,0 +1,95 @@
+<div ng-controller="ProductInputCtrl">
+    <h3>
+        Product Information
+    </h3>
+
+    <br>
+
+    <div>
+        Fields marked with a <span class="required-field">*</span> are mandatory
+    </div>
+
+    <br>
+
+    <form name="productForm" novalidate>
+        <div class="row">
+            <div class="col-md-3">
+                <label for="name">Product Name<span class="required-field">*</span></label>
+                <input type="text" class="form-control input-sm"
+                       ng-model="product.name" name="name" id="name" required/>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <label for="productNumber">Product #<span class="required-field">*</span></label>
+                <input type="text" class="form-control input-sm"
+                       ng-model="product.productNumber" name="productNumber" id="productNumber" required/>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label>Total Cost<span class="required-field">*</span></label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" class="form-control input-sm"
+                           ng-model="product.price"
+                           name="price" ng-pattern="/^\d+(\.\d+)?$/"/>
+                </div>
+                <div class="text-danger"
+                     ng-show="productForm.price.$dirty && productForm.price.$error.pattern">Please enter a valid number
+                </div>
+            </div>
+        </div>
+
+        <br>
+    </form>
+
+    <div class="container footer">
+        <div class="col-md-9 footer-section">
+            <div class="text-right">
+                <button class="btn btn-default" type="button"
+                        ng-disabled="persistingProduct" ng-click="saveProduct()"><i
+                        class="icon-disk i-grey"></i>Save
+                </button>
+
+                <button ng-show="isUndefined(product.template)"
+                        ng-disabled="persistingProduct"
+                        data-toggle="modal" data-target="#deleteProductModal"
+                        class="btn btn-default"><i
+                        class="icon-remove i-grey"></i>Delete
+                </button>
+
+                <button class="btn btn-default" ng-click="cancelProductDataEntry()"
+                        ng-disabled="persistingProduct"><i
+                        class="icon-close i-grey"></i>Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteProductModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Are you sure?</h4>
+                </div>
+                <div class="modal-body">
+                    <div>Are you sure you want to delete the product <b>{{product.name}} - {{product.productNumber}}?</b></div>
+
+                    <div class="text-center text-danger modal-error"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteProduct()">Delete</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>

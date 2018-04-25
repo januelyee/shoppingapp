@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="shoppingTest" transaction-type="RESOURCE_LOCAL">
+        <description>This unit manages Shopping entities</description>
+        <jta-data-source>jdbc/shoppingDS</jta-data-source>
+
+        <class>com.januelyee.shoppingcart.entities.ProductEntity</class>
+        <class>com.januelyee.shoppingcart.entities.ProductAttributeEntity</class>
+        <class>com.januelyee.shoppingcart.entities.InventoryItemEntity</class>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/shopping"/>
+            <property name="javax.persistence.jdbc.user" value="shopping"/>
+            <property name="javax.persistence.jdbc.password" value="shopping"/>
+
+            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
+            <property name="eclipselink.persistence-context.flush-mode" value="auto"/>
+            <property name="eclispelink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.thread" value="true"/>
+            <property name="eclipselink.logging.session" value="true"/>
+            <property name="eclipselink.logging.exceptions" value="true"/>
+            <property name="eclipselink.logging.timestamp" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

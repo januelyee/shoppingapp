@@ -1,0 +1,15 @@
+[
+  {
+    "type" : "menu",
+    "label" : "Product Catalog",
+    "labelColor": "",
+    "id": "policy",
+    "icon": "icon-books",
+    "iconSelectedColor": "i-green",
+    "mainPartialHTML": "partials/products.html",
+    "overviewPartialHTML": "partials/productsOverview.html",
+    "inputPartialHTML": "partials/productInput.html",
+    "children": [],
+    "isPrototype": false
+  }
+]
