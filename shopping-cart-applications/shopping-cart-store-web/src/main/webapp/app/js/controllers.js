@@ -335,7 +335,8 @@ angular.module('MyShoppingApp.controllers', [])
         var updateProduct = function () {
             if (areFormFieldsValid()) {
                 $scope.persisitingProduct = true;
-                ProductAdminService.update({}, $scope.claim,
+                $scope.product.type = undefined;
+                ProductAdminService.update({}, $scope.product,
                     finishPersisting,
                     function (ignoreHttpResponse) {
                         // Error
