@@ -29,7 +29,14 @@ public abstract class AbstractProductCatalogManager implements ProductCatalogMan
     @Override
     public void addProduct(Product product) {
         checkInput(product);
-        getProductCatalog().create(product);
+        try {
+            getProductByProductNumber(product.getProductNumber());
+            throw new InvalidInputException("This product number already exists!");
+
+        } catch (RecordNotFoundException e) {
+            getProductCatalog().create(product);
+        }
+
     }
 
     @Override

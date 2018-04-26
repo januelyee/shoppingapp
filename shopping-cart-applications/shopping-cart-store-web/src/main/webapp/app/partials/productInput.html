@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-3 col-md-offset-1">
                 <label for="productNumber">Product #<span class="required-field">*</span></label>
-                <input type="text" class="form-control input-sm"
+                <input type="text" class="form-control input-sm" ng-disabled="isUndefined(product.template)"
                        ng-model="product.productNumber" name="productNumber" id="productNumber" required/>
             </div>
         </div>
