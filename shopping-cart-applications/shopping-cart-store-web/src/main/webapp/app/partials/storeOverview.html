@@ -1,4 +1,4 @@
-<div ng-controller="CartOverviewCtrl">
+<div ng-controller="StoreOverviewCtrl">
 
     <h3 class="pull-left">Store</h3>
 
@@ -20,16 +20,24 @@
                 <small>Product #</small>
             </th>
             <th>
-                <small>Quantity</small>
+                <small>Stock #</small>
+            </th>
+            <th>
+
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="i in cartItems | filter:filterText" class="pointer">
+        <tr ng-repeat="i in inventory | filter:filterText"
+            ng-click="editProduct(p)"
+            class="pointer">
             <td>{{ i.product.name }}</td>
             <td>{{ i.product.price }}</td>
             <td>{{ i.product.productNumber }}</td>
-            <td>{{ i.quantity }}</td>
+            <td>{{ i.itemCode }}</td>
+            <td>
+                <button ng-click="addToCart(i)">Add to Cart</button>
+            </td>
         </tr>
         </tbody>
     </table>

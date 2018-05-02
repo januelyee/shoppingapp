@@ -9,5 +9,6 @@ package com.januelyee.shoppingcart.domain.template.customer;
  */
 public enum OrderStatus {
     APPROVED,
+    PENDING_INSPECTION,
     PROBLEMATIC
 }

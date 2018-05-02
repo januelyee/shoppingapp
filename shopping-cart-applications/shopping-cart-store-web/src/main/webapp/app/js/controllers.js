@@ -226,7 +226,7 @@ angular.module('MyShoppingApp.controllers', [])
         $scope.overviewPartial = undefined;
         $scope.inputPartial = undefined;
 
-        var initInsuranceProductsCatalogCtrl = function () {
+        var initProductsCatalogCtrl = function () {
             if (angular.isDefined($scope.selectedMenuItem)) {
                 $scope.overviewPartial = angular.copy($scope.selectedMenuItem.overviewPartialHTML);
                 $scope.inputPartial = angular.copy($scope.selectedMenuItem.inputPartialHTML);
@@ -243,7 +243,7 @@ angular.module('MyShoppingApp.controllers', [])
             $scope.productsCatalogPartial = $scope.overviewPartial;
         };
 
-        initInsuranceProductsCatalogCtrl();
+        initProductsCatalogCtrl();
 
     }])
     .controller('ProductsCatalogOverviewCtrl', ['$scope', '$http', 'contextPath', '$window', '$timeout', '$location', '$filter', '$q', 'ProductAdminService', function ($scope, $http, contextPath, $window, $timeout, $location, $filter, q, ProductAdminService) {
@@ -380,5 +380,134 @@ angular.module('MyShoppingApp.controllers', [])
         };
 
         initProductInputCtrl();
+
+    }])
+    .controller('ShopCtrl', ['$scope', '$http', 'contextPath', '$window', '$timeout', '$location', '$filter', '$q', function ($scope, $http, contextPath, $window, $timeout, $location, $filter) {
+
+        $scope.middleSection = '';
+
+        var loadMenus = function() {
+            $http.get('partials/shopMenus.json').success(function (data) {
+                $scope.shopMenuItems = data;
+            });
+        };
+
+        var initializeController = function() {
+            loadMenus();
+        };
+
+        var changeMiddleSectionTo = function(section) {
+            $scope.middleSection = section;
+        };
+
+        $scope.isSelectedMenuItem = function (subMenuItem) {
+            return subMenuItem === $scope.selectedMenuItem ? 'i-yellow' : 'i-grey';
+        };
+
+        $scope.changeMenuItem = function (menuItem) {
+            if (menuItem.type === 'menu') {
+                $scope.selectedMenuItem = menuItem;
+                changeMiddleSectionTo(menuItem.mainPartialHTML);
+            }
+        };
+
+        initializeController();
+
+    }])
+    .controller('StoreCtrl', ['$scope', '$http', 'contextPath', '$window', '$timeout', '$location', '$filter', '$q', 'ShoppingService', function ($scope, $http, contextPath, $window, $timeout, $location, $filter, q, ShoppingService) {
+
+        $scope.storeCtrl = {
+            cart: {}
+        };
+
+        $scope.overviewPartial = undefined;
+
+        var setCartValue = function(cartValue) {
+            $scope.storeCtrl.cart = cartValue;
+        };
+
+        var initStoreCtrl = function () {
+            if (angular.isDefined($scope.selectedMenuItem)) {
+                ShoppingService.getCart({}, function (value, ignoreResponseHeaders) {
+                    // Success
+                    setCartValue(value);
+                    $scope.overviewPartial = angular.copy($scope.selectedMenuItem.overviewPartialHTML);
+                    $scope.switchToStoreOverviewView();
+
+                }, function (ignoreHttpResponse) {
+                    // Error
+                });
+
+            }
+        };
+
+        $scope.switchToStoreOverviewView = function () {
+            $scope.storePartial = $scope.overviewPartial;
+        };
+
+        initStoreCtrl();
+
+    }])
+    .controller('StoreOverviewCtrl', ['$scope', '$http', 'contextPath', '$window', '$timeout', '$location', '$filter', '$q', 'ShoppingService', function ($scope, $http, contextPath, $window, $timeout, $location, $filter, q, ShoppingService) {
+
+        $scope.inventory = [];
+        $scope.loadingInventory = false;
+
+        $scope.loadRecordList = function () {
+            $scope.loadingInventory = true;
+
+            ShoppingService.getInventory({}, function (value, ignoreResponseHeaders) {
+                // Success
+                $scope.setRecordList(value);
+                $scope.loadingInventory = false;
+            }, function (ignoreHttpResponse) {
+                // Error
+                $scope.loadingInventory = false;
+            });
+        };
+
+        $scope.hasTableRows = function () {
+            var numberOfRows = $scope.inventory.length;
+            return numberOfRows > 0;
+        };
+
+        $scope.setRecordList = function (records) {
+            $scope.inventory = records;
+        };
+
+        $scope.addToCart = function (item) {
+            ShoppingService.addItemToCart({itemCode: item.itemCode, quantity: 1}, function (value, ignoreResponseHeaders) {
+                // Success
+            }, function (ignoreHttpResponse) {
+                // Error
+            });
+        };
+
+        var initStoreOverviewCtrl = function () {
+            $scope.loadRecordList();
+        };
+
+        initStoreOverviewCtrl();
+
+    }])
+    .controller('CartOverviewCtrl', ['$scope', '$http', 'contextPath', '$window', '$timeout', '$location', '$filter', '$q', 'ShoppingService', function ($scope, $http, contextPath, $window, $timeout, $location, $filter, q, ShoppingService) {
+
+        $scope.cartItems = [];
+
+        $scope.loadCart = function () {
+            ShoppingService.getCart({}, function (value, ignoreResponseHeaders) {
+                // Success
+                $scope.cartItems = value.items;
+
+            }, function (ignoreHttpResponse) {
+                // Error
+            });
+        };
+
+        var initStoreOverviewCtrl = function () {
+            $scope.loadCart();
+        };
+
+        initStoreOverviewCtrl();
 
     }]);

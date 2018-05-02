@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.Query;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,12 +45,23 @@ public class InventoryStorageJPAImpl extends AbstractInventoryStorageJPAImpl imp
     }
 
     @Override
+    protected void setShoppingEntityId(Long id, InventoryItem inventoryItem) {
+        if (inventoryItem instanceof InventoryItemEntity) {
+            ((InventoryItemEntity) inventoryItem).setId(id);
+        } else {
+            throw new ClassCastException("The given object is not an InventoryItemEntity object!");
+        }
+    }
+
+    @Override
     public List<InventoryItem> findByItemCodes(Collection<String> itemCodes) {
         log.debug("Finding all entities of:[" + getEntityClass() + "]");
         try {
             getEntityManager().clear();
-            List<InventoryItem> results = (List<InventoryItem>) getEntityManager().createNamedQuery(getEntityClass().getSimpleName() + ".findByItemCodes").getResultList();
+            Query query = getEntityManager().createNamedQuery("InventoryItemEntity.findByItemCodes");
+            query.setParameter("itemCodes", itemCodes);
 
+            List<InventoryItem> results = (List<InventoryItem>) query.getResultList();
             log.debug("Found " + results);
             return results;
 

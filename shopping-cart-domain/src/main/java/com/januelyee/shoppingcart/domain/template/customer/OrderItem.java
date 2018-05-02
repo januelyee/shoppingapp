@@ -8,4 +8,6 @@ package com.januelyee.shoppingcart.domain.template.customer;
  * @since 4.1.1
  */
 public interface OrderItem extends InventoryItemWrapper {
+    OrderItemStatus getStatus();
+    void setStatus(OrderItemStatus status);
 }

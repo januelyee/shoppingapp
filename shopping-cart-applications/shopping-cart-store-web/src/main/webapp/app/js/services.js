@@ -24,4 +24,20 @@ angular.module('MyShoppingApp.services', ['ngResource'])
                 delete: {method: 'DELETE', url: baseUrl + '/:productNumber'},
                 getProductsFromCatalog: {method: 'GET', isArray: true}
             });
-        }]);
+        }
+    ])
+    .factory('ShoppingService', ['$resource', 'RESTContextPath',
+        function ($resource, RESTContextPath) {
+            var baseUrl = RESTContextPath + '/webapi/shop';
+            return $resource(baseUrl, {}, {
+                getCart: {method: 'GET', url: baseUrl + '/cart'},
+                addItemToCart: {method: 'GET', url: baseUrl + '/cart/:itemCode/:quantity'},
+                returnCart: {method: 'PUT', url: baseUrl + '/cart/return'},
+                increaseCartItemQuantity: {method: 'GET', url: baseUrl + '/cart/increase/quantity/:itemCode'},
+                decreaseCartItemQuantity: {method: 'GET', url: baseUrl + '/cart/decrease/quantity/:itemCode'},
+                order: {method: 'PUT', url: baseUrl + '/order'},
+                getUpdatedCartInformation: {method: 'GET', url: baseUrl + '/refresh'},
+                getInventory: {method: 'GET', url: baseUrl + '/inventory', isArray: true}
+            });
+        }
+    ]);

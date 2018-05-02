@@ -1,9 +1,6 @@
 package com.januelyee.shoppingcart.domain.abstraction.personnel;
 
-import com.januelyee.shoppingcart.domain.template.customer.Order;
-import com.januelyee.shoppingcart.domain.template.customer.OrderItem;
-import com.januelyee.shoppingcart.domain.template.customer.OrderStatus;
-import com.januelyee.shoppingcart.domain.template.customer.ProductOrderHistory;
+import com.januelyee.shoppingcart.domain.template.customer.*;
 import com.januelyee.shoppingcart.domain.template.personnel.InventoryManager;
 import com.januelyee.shoppingcart.domain.template.personnel.OrderDispatcher;
 import com.januelyee.shoppingcart.domain.template.personnel.OrderManager;
@@ -44,17 +41,24 @@ public abstract class AbstractOrderManager implements OrderManager {
         List<OrderItem> orderItems = order.getOrderItems();
         InventoryManager inventoryManager = getInventoryManager();
 
+        boolean isProblematic = false;
         for (OrderItem orderItem : orderItems) {
             if (orderItem.getInventoryItem() != null) {
                 int orderQty = orderItem.getQuantity();
                 int inventoryQty = inventoryManager.checkItemQuantity(orderItem.getInventoryItem().getItemCode());
                 if ((inventoryQty - orderQty) < 0) {
-                    orderItem.getInventoryItem().setQuantity(inventoryQty);
-                    if (!order.getStatus().equals(OrderStatus.PROBLEMATIC)) {
-                        order.setStatus(OrderStatus.PROBLEMATIC);
-                    }
+                    orderItem.setStatus(OrderItemStatus.INSUFFICIENT_INVENTORY);
+                    isProblematic = true;
+                } else {
+                    orderItem.setStatus(OrderItemStatus.SUFFICIENT_INVENTORY);
                 }
             }
+        }
+
+        if (isProblematic) {
+            order.setStatus(OrderStatus.PROBLEMATIC);
+        } else {
+            order.setStatus(OrderStatus.APPROVED);
         }
 
         return order;
@@ -64,22 +68,17 @@ public abstract class AbstractOrderManager implements OrderManager {
     public OrderStatus finalizeOrder(Order order) {
         checkState();
         checkInput(order);
-        List<OrderItem> orderItems = order.getOrderItems();
-        InventoryManager inventoryManager = getInventoryManager();
-        OrderDispatcher orderDispatcher = getOrderDispatcher();
+        Order updatedOrderInformation = updateOrderInformationWithProblems(order);
+        List<OrderItem> orderItems = updatedOrderInformation.getOrderItems();
 
-        for (OrderItem orderItem : orderItems) {
-            if (orderItem.getInventoryItem() != null) {
-                int orderQty = orderItem.getQuantity();
-                int inventoryQty = inventoryManager.checkItemQuantity(orderItem.getInventoryItem().getItemCode());
-                if ((inventoryQty - orderQty) < 0) {
-                    order.setStatus(OrderStatus.PROBLEMATIC);
-                    return order.getStatus();
-                }
-            }
+
+        if (updatedOrderInformation.getStatus().equals(OrderStatus.PROBLEMATIC)) {
+            return OrderStatus.PROBLEMATIC;
         }
 
+        OrderDispatcher orderDispatcher = getOrderDispatcher();
         List<ProductOrderHistory> orderHistories = orderDispatcher.dispatchOrder(order);
+
         for (OrderItem orderItem : orderItems) {
             if (orderItem.getInventoryItem() != null) {
                 int newQty = inventoryManager.decreaseItemQuantity(orderItem.getInventoryItem().getItemCode(), orderItem.getQuantity());
@@ -88,6 +87,11 @@ public abstract class AbstractOrderManager implements OrderManager {
 
         order.setStatus(OrderStatus.APPROVED);
         return order.getStatus();
+    }
+
+
+    private void validateOrder(Order order) {
+
     }
 
     private void checkInput(Order order) {

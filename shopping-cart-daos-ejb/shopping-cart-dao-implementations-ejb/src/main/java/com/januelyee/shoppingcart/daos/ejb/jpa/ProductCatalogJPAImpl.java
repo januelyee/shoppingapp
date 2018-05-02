@@ -48,6 +48,15 @@ public class ProductCatalogJPAImpl extends AbstractProductCatalogJPAImpl impleme
     }
 
     @Override
+    protected void setShoppingEntityId(Long id, Product product) {
+        if (product instanceof ProductEntity) {
+            ((ProductEntity) product).setId(id);
+        } else {
+            throw new ClassCastException("The given object is not an ProductEntity object!");
+        }
+    }
+
+    @Override
     protected void checkForInputErrors(Product product) {
         if (product == null) {
             throw new DAOInvalidInputException("Product is not defined!");
@@ -103,12 +112,11 @@ public class ProductCatalogJPAImpl extends AbstractProductCatalogJPAImpl impleme
 
             if (!foundProducts.isEmpty()) {
                 Product found = foundProducts.get(0);
-                found.setProductNumber(t.getProductNumber());
-                found.setProductAttributes(t.getProductAttributes());
-                found.setPrice(t.getPrice());
-                found.setName(t.getName());
+                Long id = getShoppingEntityId(found);
+                setShoppingEntityId(id, t);
 
-                getEntityManager().merge(found);
+
+                getEntityManager().merge(t);
             }
 
         } catch (DAORecordNotFoundException e) {

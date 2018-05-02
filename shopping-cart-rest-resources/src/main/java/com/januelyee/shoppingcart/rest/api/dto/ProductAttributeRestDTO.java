@@ -1,6 +1,6 @@
 package com.januelyee.shoppingcart.rest.api.dto;
 
-public class ProductAttributeRestDTO {
+public abstract class ProductAttributeRestDTO {
 
     private String name;
     private String value;

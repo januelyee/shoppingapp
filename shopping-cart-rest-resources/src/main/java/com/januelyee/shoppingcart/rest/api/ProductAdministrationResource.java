@@ -4,7 +4,6 @@ import com.januelyee.shoppingcart.domain.template.inventory.Product;
 import com.januelyee.shoppingcart.domain.template.inventory.ProductAttribute;
 import com.januelyee.shoppingcart.rest.api.dto.input.ProductAttributeRestInputDTO;
 import com.januelyee.shoppingcart.rest.api.dto.input.ProductRestInputDTO;
-import com.januelyee.shoppingcart.rest.api.dto.output.ProductAttributeOutputDTO;
 import com.januelyee.shoppingcart.rest.api.dto.output.ProductRestOutputDTO;
 import com.januelyee.shoppingcart.services.ejb.interfaces.ProductAdminServiceLocal;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ public class ProductAdministrationResource extends ShoppingResource {
 
             List<ProductRestOutputDTO> outputArray = new ArrayList<>();
             for (Product p : results) {
-                outputArray.add(convertToOutputDTO(p));
+                outputArray.add(createProductRestOutputDTO(p));
             }
 
             ProductRestOutputDTO[] itemsAsArray = outputArray.toArray(new ProductRestOutputDTO[0]);
@@ -118,29 +117,6 @@ public class ProductAdministrationResource extends ShoppingResource {
         }
 
         return p;
-    }
-
-    private ProductRestOutputDTO convertToOutputDTO(Product product) {
-        ProductRestOutputDTO dto = new ProductRestOutputDTO();
-        dto.setName(product.getName());
-        dto.setProductNumber(product.getProductNumber());
-        dto.setPrice(product.getPrice());
-
-        List<ProductAttribute> attributes = product.getProductAttributes();
-        if (attributes != null) {
-            List<ProductAttributeOutputDTO> attributeOutputDTOS = new ArrayList<>();
-            for (ProductAttribute attribute : attributes) {
-                ProductAttributeOutputDTO a = new ProductAttributeOutputDTO();
-                a.setName(attribute.getName());
-                a.setValue(attribute.getValue());
-                a.setSequenceNumber(attribute.getSequenceNumber());
-                attributeOutputDTOS.add(a);
-            }
-
-            dto.setProductAttributes(attributeOutputDTOS);
-        }
-
-        return dto;
     }
 
     /*@GET

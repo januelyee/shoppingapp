@@ -22,6 +22,7 @@ public abstract class CRUDOperationsJPAImpl<T> implements CRUDOperations<T> {
 
     protected abstract Class getEntityClass();
     protected abstract Long getShoppingEntityId(T t);
+    protected abstract void setShoppingEntityId(Long id, T t);
     protected abstract void checkForInputErrors(T t);
 
     public EntityManager getEntityManager() {

@@ -13,7 +13,7 @@ public class ShoppingEntityFactory {
 
     public static ProductEntity getProductEntity() {
         ProductEntity p = new ProductEntity();
-        p.setName("Test Product");
+        p.setName("Test Product - " + random.nextInt());
         p.setProductNumber("PRODUCT-JUNIT-" + random.nextInt());
         p.setPrice(10);
         p.setAttribute(new ProductAttributeEntity("Manufacturer", "Bogus Corp"));
@@ -23,7 +23,7 @@ public class ShoppingEntityFactory {
 
     public static InventoryItemEntity getInventoryItemEntity() {
         InventoryItemEntity i = new InventoryItemEntity();
-        i.setQuantity(1);
+        i.setQuantity(10);
         i.setItemCode("ITEM-JUNIT-" + random.nextInt());
         return i;
     }

@@ -36,7 +36,7 @@
 
 <body ng-controller="GlobalCtrl">
 <div id="mainBody">
-    <div dw-loading="wholeScreenLoading" dw-loading-options="wholeScreenLoadingOptions">
+    <div>
         <div ng-controller="SlideNavCtrl">
             <!--Header Navigation-->
             <nav id="riskNavigationBar" class="navbar navbar-inverse navbar-fixed-top" role="navigation"
@@ -94,16 +94,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="list-inline text-center">
-                            <!--TENANTS-->
 
-                            <!--SUSTAINABILITY-->
-                            <li class="pointer" ng-click="goToModule('sustainability', 'sustainability', true)">
+                            <li class="pointer" ng-click="goToModule('shop', 'shop', true)">
                                 <i id="sustainability" class="icon-office i-yellow-xlarge"></i>
                                 <div>Shop</div>
                             </li>
                             <li class="divider-vertical"></li>
 
-                            <!--ENVIRONMENTAL-->
                             <li ng-click="goToModule('administration', 'administration', true)" class="pointer">
                                 <i id="administration" class="icon-storage i-green-xlarge"></i>
                                 <div >Administration</div>

@@ -3,7 +3,7 @@
     "type" : "menu",
     "label" : "Product Catalog",
     "labelColor": "",
-    "id": "policy",
+    "id": "productCatalog",
     "icon": "icon-books",
     "iconSelectedColor": "i-green",
     "mainPartialHTML": "partials/products.html",

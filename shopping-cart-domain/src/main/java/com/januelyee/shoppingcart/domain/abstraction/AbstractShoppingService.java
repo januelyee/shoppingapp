@@ -1,5 +1,6 @@
 package com.januelyee.shoppingcart.domain.abstraction;
 
+import com.januelyee.shoppingcart.domain.exceptions.InvalidInputException;
 import com.januelyee.shoppingcart.domain.template.ShoppingService;
 import com.januelyee.shoppingcart.domain.template.customer.*;
 import com.januelyee.shoppingcart.domain.template.inventory.InventoryItem;
@@ -55,7 +56,7 @@ public abstract class AbstractShoppingService implements ShoppingService {
         CartItem cartItem = createCartItemInstance();
         cartItem.setInventoryItem(item);
         cartItem.setQuantity(quantity);
-        getCart().addItem(cartItem);
+        cart.addItem(cartItem);
     }
 
     @Override
@@ -65,24 +66,34 @@ public abstract class AbstractShoppingService implements ShoppingService {
 
     @Override
     public int increaseCartItemQuantity(String itemCode, int additionalQuantity) {
+        checkState();
         return getCart().increaseItemQuantity(itemCode, additionalQuantity);
     }
 
     @Override
     public int decreaseCartItemQuantity(String itemCode, int reductionQuantity) {
+        checkState();
         return getCart().decreaseItemQuantity(itemCode, reductionQuantity);
     }
 
     @Override
     public OrderStatus submitOrder() {
+        checkState();
+
+        if (getCart().getCartItems() == null || getCart().getCartItems().isEmpty()) {
+            throw new InvalidInputException("Cart is empty!");
+        }
+
         Order order = prepareOrder();
         return getOrderManager().finalizeOrder(order);
     }
 
     @Override
     public Cart getUpdatedCartInformation() {
+        checkState();
         Order order = prepareOrder();
         Order updatedOrderInformation = getOrderManager().updateOrderInformationWithProblems(order);
+
         if (updatedOrderInformation.getStatus().equals(OrderStatus.PROBLEMATIC)) {
             Cart cart = getCart();
             cart.setCartItems(new ArrayList<CartItem>());
@@ -91,6 +102,12 @@ public abstract class AbstractShoppingService implements ShoppingService {
                 CartItem cartItem = createCartItemInstance();
                 cartItem.setQuantity(orderItem.getQuantity());
                 cartItem.setInventoryItem(orderItem.getInventoryItem());
+                if (orderItem.getStatus().equals(OrderItemStatus.INSUFFICIENT_INVENTORY)) {
+                    cartItem.setStatus(CartItemStatus.UNAVAILABLE);
+                } else {
+                    cartItem.setStatus(CartItemStatus.AVAILABLE);
+                }
+
                 cart.addItem(cartItem);
             }
 
@@ -100,6 +117,12 @@ public abstract class AbstractShoppingService implements ShoppingService {
         return getCart();
     }
 
+
+    @Override
+    public List<InventoryItem> getInventoryItems() {
+        checkState();
+        return getInventoryManager().getItems();
+    }
 
     private Order prepareOrder() {
         Order order = createOrderInstance();
@@ -112,5 +135,12 @@ public abstract class AbstractShoppingService implements ShoppingService {
         }
 
         return order;
+    }
+
+
+    private void checkState() {
+        if(getOrderManager() == null || getInventoryManager() == null || getCart() == null ) {
+            throw new IllegalStateException("Shopping service dependencies are not initialized!");
+        }
     }
 }

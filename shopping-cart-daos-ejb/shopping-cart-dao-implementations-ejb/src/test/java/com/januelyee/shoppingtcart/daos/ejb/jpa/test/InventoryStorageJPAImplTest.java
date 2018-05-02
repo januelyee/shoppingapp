@@ -44,6 +44,15 @@ public class InventoryStorageJPAImplTest extends CRUDOperationsTest<InventoryIte
     }
 
     @Override
+    protected void setEntityId(Long id, InventoryItem inventoryItem) {
+        if (inventoryItem instanceof InventoryItemEntity) {
+            ((InventoryItemEntity) inventoryItem).setId(id);
+        } else {
+            throw new ClassCastException("Given object is not a InventoryItem object!");
+        }
+    }
+
+    @Override
     public void testUpdate() {
 
     }
@@ -81,4 +90,28 @@ public class InventoryStorageJPAImplTest extends CRUDOperationsTest<InventoryIte
         List<Product> products = productDAO.findAll();
         productDAO.deleteAll(products);
     }
+
+    /*@Test
+    public void initTheData() {
+        for (int x = 0; x < 10; x++) {
+
+            Product product = ShoppingEntityFactory.getProductEntity();
+            productDAO.create(product);
+            item.setProduct(product);
+
+            dao.create(item);
+        }
+
+    }
+
+    @Test
+    public void initItems() {
+        List<Product> products = productDAO.findAll();
+        for (Product product : products) {
+            InventoryItem item = ShoppingEntityFactory.getInventoryItemEntity();
+            item.setProduct(product);
+
+            dao.create(item);
+        }
+    }*/
 }

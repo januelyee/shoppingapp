@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class AbstractOrder implements Order {
 
-    private OrderStatus status;
+    private OrderStatus status = OrderStatus.PENDING_INSPECTION;
     private List<OrderItem> orderItems;
 
     @Override

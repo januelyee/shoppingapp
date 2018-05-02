@@ -2,8 +2,11 @@ package com.januelyee.shoppingcart.domain.template;
 
 import com.januelyee.shoppingcart.domain.template.customer.Cart;
 import com.januelyee.shoppingcart.domain.template.customer.OrderStatus;
+import com.januelyee.shoppingcart.domain.template.inventory.InventoryItem;
 import com.januelyee.shoppingcart.domain.template.personnel.InventoryManager;
 import com.januelyee.shoppingcart.domain.template.personnel.OrderManager;
+
+import java.util.List;
 
 /**
  * Represents the services and operations for shopping.
@@ -16,6 +19,7 @@ import com.januelyee.shoppingcart.domain.template.personnel.OrderManager;
 public interface ShoppingService {
     void addItemToCart(String itemCode, int quantity);
     Cart getCart();
+    Cart getCartCopy();
     void setCart(Cart cart);
     void returnCart();
     int increaseCartItemQuantity(String itemCode, int additionalQuantity);
@@ -29,4 +33,6 @@ public interface ShoppingService {
 
     void setOrderManager(OrderManager orderManager);
     OrderManager getOrderManager();
+
+    List<InventoryItem> getInventoryItems();
 }

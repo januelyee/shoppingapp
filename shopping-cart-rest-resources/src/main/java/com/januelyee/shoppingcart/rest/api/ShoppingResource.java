@@ -1,6 +1,10 @@
 package com.januelyee.shoppingcart.rest.api;
 
 import com.google.gson.JsonObject;
+import com.januelyee.shoppingcart.domain.template.inventory.Product;
+import com.januelyee.shoppingcart.domain.template.inventory.ProductAttribute;
+import com.januelyee.shoppingcart.rest.api.dto.output.ProductAttributeOutputDTO;
+import com.januelyee.shoppingcart.rest.api.dto.output.ProductRestOutputDTO;
 import com.januelyee.shoppingcart.services.ejb.implementations.exceptions.ServiceInvalidInputException;
 import com.januelyee.shoppingcart.services.ejb.implementations.exceptions.ServiceRecordNotFoundException;
 import com.januelyee.shoppingcart.services.ejb.implementations.exceptions.ServiceShoppingConstraintException;
@@ -11,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ShoppingResource {
 
@@ -82,5 +88,33 @@ public abstract class ShoppingResource {
 
     public static Response generateGeneralErrorResponse(Exception e) {
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(getErrorObjJson(e.getMessage())).build();
+    }
+
+
+    protected ProductRestOutputDTO createProductRestOutputDTO(Product product) {
+        if (product == null) {
+            return null;
+        }
+
+        ProductRestOutputDTO dto = new ProductRestOutputDTO();
+        dto.setName(product.getName());
+        dto.setProductNumber(product.getProductNumber());
+        dto.setPrice(product.getPrice());
+
+        List<ProductAttribute> attributes = product.getProductAttributes();
+        if (attributes != null) {
+            List<ProductAttributeOutputDTO> attributeOutputDTOS = new ArrayList<>();
+            for (ProductAttribute attribute : attributes) {
+                ProductAttributeOutputDTO a = new ProductAttributeOutputDTO();
+                a.setName(attribute.getName());
+                a.setValue(attribute.getValue());
+                a.setSequenceNumber(attribute.getSequenceNumber());
+                attributeOutputDTOS.add(a);
+            }
+
+            dto.setProductAttributes(attributeOutputDTOS);
+        }
+
+        return dto;
     }
 }

@@ -21,6 +21,7 @@ public abstract class CRUDOperationsTest<T> {
     protected abstract CRUDOperationsJPAImpl<T> getEntityDAO();
 
     protected abstract Long getEntityId(T t);
+    protected abstract void setEntityId(Long id, T t);
 
     @BeforeClass
     public static void startup() {
@@ -76,7 +77,7 @@ public abstract class CRUDOperationsTest<T> {
 
         T e = getEntityDAO().find(entity);
         Assert.assertNotNull(e);
-        getEntityDAO().delete(entity);
+        // getEntityDAO().delete(entity);
     }
 
 

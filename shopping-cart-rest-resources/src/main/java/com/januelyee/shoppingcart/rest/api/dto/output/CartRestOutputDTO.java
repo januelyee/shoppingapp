@@ -1,14 +1,16 @@
 package com.januelyee.shoppingcart.rest.api.dto.output;
 
-import com.januelyee.shoppingcart.domain.template.customer.Cart;
-import com.januelyee.shoppingcart.domain.abstraction.customer.AbstractCart;
+import java.util.List;
 
-import java.io.Serializable;
+public class CartRestOutputDTO {
 
-public class CartRestOutputDTO extends AbstractCart implements Cart, Serializable {
-    private static final long serialVersionUID = -1051065814104841267L;
+    private List<CartItemRestOutputDTO> cartItems;
 
-    public CartRestOutputDTO(Cart cart) {
-        setCartItems(cart.getCartItems());
+    public List<CartItemRestOutputDTO> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItemRestOutputDTO> items) {
+        this.cartItems = items;
     }
 }

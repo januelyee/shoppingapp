@@ -1,0 +1,28 @@
+[
+  {
+    "type" : "menu",
+    "label" : "Store",
+    "labelColor": "",
+    "id": "store",
+    "icon": "icon-office",
+    "iconSelectedColor": "i-yellow",
+    "mainPartialHTML": "partials/store.html",
+    "overviewPartialHTML": "partials/storeOverview.html",
+    "inputPartialHTML": "",
+    "children": [],
+    "isPrototype": false
+  },
+  {
+    "type" : "menu",
+    "label" : "Cart",
+    "labelColor": "",
+    "id": "cart",
+    "icon": "icon-cart-2",
+    "iconSelectedColor": "i-yellow",
+    "mainPartialHTML": "partials/cart.html",
+    "overviewPartialHTML": "partials/cartOverview.html",
+    "inputPartialHTML": "partials/cartInput.html",
+    "children": [],
+    "isPrototype": false
+  }
+]

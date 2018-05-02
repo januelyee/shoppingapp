@@ -5,6 +5,7 @@ import com.januelyee.shoppingcart.daos.ejb.jpa.ProductCatalogJPAImpl;
 import com.januelyee.shoppingcart.domain.template.inventory.Product;
 import com.januelyee.shoppingcart.entities.ProductEntity;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 
 import java.util.List;
@@ -34,7 +35,33 @@ public class ProductCatalogJPAImplTest extends CRUDOperationsTest<Product> {
     }
 
     @Override
+    protected void setEntityId(Long id, Product product) {
+        if (product instanceof ProductEntity) {
+            ((ProductEntity) product).setId(id);
+        } else {
+            throw new ClassCastException("Given object is not a ProductEntity object!");
+        }
+    }
+
+    @Override
     public void testUpdate() {
+        String updatedName = "Modified Name";
+
+        Product p = getEntityInstance();
+        getEntityDAO().create(p);
+
+        Product found = getEntityDAO().find(p);
+        Assert.assertNotNull(found);
+
+        Long foundId = getEntityId(found);
+        setEntityId(foundId, p);
+
+        p.setName(updatedName);
+
+        getEntityDAO().update(p);
+
+        Product foundAgain = getEntityDAO().find(p);
+        Assert.assertEquals(updatedName, foundAgain.getName());
 
     }
 

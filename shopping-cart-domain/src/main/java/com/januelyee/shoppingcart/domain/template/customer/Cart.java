@@ -14,6 +14,8 @@ public interface Cart {
     int increaseItemQuantity(String itemCode, int additionalQuantity);
 
     List<CartItem> getCartItems();
+    List<CartItem> getCartItemsCopy();
+
     void setCartItems(List<CartItem> items);
 
     int addItem(CartItem item);

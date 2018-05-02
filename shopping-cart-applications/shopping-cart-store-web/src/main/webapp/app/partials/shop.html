@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div ng-controller="ShopCtrl">
 
-</body>
-</html>
+    <div class="row sub-header">
+        <div class="col-md-3">
+            <div class="i-yellow-block-med"><i class="icon-office"></i></div>
+            <span>Shop</span>
+        </div>
+        <div class="col-md-9" class="text-center">
+        </div>
+    </div>
+
+    <!-- Side Nav -->
+    <div class="row">
+        <div class="col-md-3" style="border-right: #F2F2F2 1px solid">
+            <br>
+            <div>
+                <ul class="list-unstyled" id="adminMenu">
+                    <li ng-repeat="item in shopMenuItems">
+                        <a href="" ng-click="changeMenuItem(item)">
+                            <i class="{{ item.icon }}" ng-class="isSelectedMenuItem(item)"></i>
+                            <span>{{item.label}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!-- End Side Nav -->
+
+
+        <div class="col-md-9" style="margin-bottom: 52px">
+
+
+            <div class="row">
+                <!-- Middle Content -->
+                <div class="col-md-12">
+                    <div ng-include="middleSection"></div>
+                </div>
+                <!-- End Middle Content -->
+            </div>
+
+        </div>
+    </div>
+</div>

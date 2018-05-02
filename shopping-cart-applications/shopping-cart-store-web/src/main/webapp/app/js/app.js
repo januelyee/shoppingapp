@@ -17,10 +17,10 @@ var app = angular.module('MyShoppingApp', ['ngRoute', 'MyShoppingApp.filters', '
                 controller: 'GlobalCtrl',
                 templateUrl: 'partials/index.html'
             })
-            /*.when('/shop', {
+            .when('/shop', {
                 controller: 'ShopCtrl',
                 templateUrl: 'partials/shop.html'
-            })*/
+            })
             .when('/administration', {
                 controller: 'AdminCtrl',
                 templateUrl: 'partials/administration.html'
